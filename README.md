@@ -60,19 +60,19 @@ However, if you wish to change the default `AppMode`, when creating the env, you
         // the rest of your application
     }
 
- ### Getting the applications key
+### Getting the applications key
 
- Similar to `AppMode` By default Env sets an `AppKey` which allows you to quickly access the applications key for encryption purposes:
+Similar to `AppMode` By default Env sets an `AppKey` which allows you to quickly access the applications key for encryption purposes:
 
-     package main
+    package main
 
-     import "github.com/themccallister/env"
+    import "github.com/themccallister/env"
 
-     func main() {
-         e := env.Env{}
-         k := e.AppKey()
-         // do something awesome with the key
-     }
+    func main() {
+        e := env.Env{}
+        k := e.AppKey()
+        // do something awesome with the key
+    }
 
 You can also set a default, using the following code:
 
