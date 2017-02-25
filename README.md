@@ -9,6 +9,14 @@ Pull requests are welcome and if you would like to have a discussion please feel
 
 Install env using the command `go get themccallister/env`.
 
+## Common Helpers
+
+There are a few helper methods on Env that are used often, these are `AppMode` and `AppKey`.
+
+`AppMode` is a string that defines the applications mode, such as production, development or staging.
+
+`AppKey` is a random string that can be used for encrypting within the application.
+
 ## Documentation
 
 You can create a new env instance in your app like so:
@@ -49,6 +57,31 @@ However, if you wish to change the default `AppMode`, when creating the env, you
 
     func main() {
         e := env.Env{DefaultMode: "production"}
+        // the rest of your application
+    }
+
+ ### Getting the applications key
+
+ Similar to `AppMode` By default Env sets an `AppKey` which allows you to quickly access the applications key for encryption purposes:
+
+     package main
+
+     import "github.com/themccallister/env"
+
+     func main() {
+         e := env.Env{}
+         k := e.AppKey()
+         // do something awesome with the key
+     }
+
+You can also set a default, using the following code:
+
+    package main
+
+    import "github.com/themccallister/env"
+
+    func main() {
+        e := env.Env{DefaultKey: "D035ABB6AC62A811D462D9BD572396E5C52E383699737A9D4B022E3C3B2618CF"}
         // the rest of your application
     }
 

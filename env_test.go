@@ -51,3 +51,36 @@ func TestEnvCanSetADefaultModeToOverrideThePackageDefaultAppMode(t *testing.T) {
 		t.Fatalf("expected the app mode to be staging, got %v instead", m)
 	}
 }
+
+func TestCanGetTheAppKeyFromEnv(t *testing.T) {
+	os.Setenv("APP_KEY", "1234")
+	e := Env{}
+	k, err := e.AppKey()
+	if err != nil {
+		t.Fatalf("could not get the AppKey from the Env, got %v instead", err)
+	}
+	if k != "1234" {
+		t.Fatalf("expected the key to not be empty, got %v instead", k)
+	}
+}
+
+func TestGettingTheAppKeyWithoutTheEnvVarReturnsAnError(t *testing.T) {
+	os.Unsetenv("APP_KEY")
+	e := Env{}
+	_, err := e.AppKey()
+	if err == nil {
+		t.Fatal("expected an error, but none was returned")
+	}
+}
+
+func TestDefaultAppKeyCanBeSetAndReturnedIfTheAppKeyIsNotSetInEnv(t *testing.T) {
+	os.Unsetenv("APP_KEY")
+	e := Env{DefaultKey: "654321"}
+	k, err := e.AppKey()
+	if err != nil {
+		t.Fatalf("an unexpected error occured, %v", err)
+	}
+	if k != "654321" {
+		t.Fatalf("expected the app key to be 654321, got %v instead", k)
+	}
+}
