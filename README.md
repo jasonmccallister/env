@@ -1,5 +1,5 @@
 <p align="center">
-[![Build Status](https://travis-ci.org/themccallister/env.svg?branch=master)](https://travis-ci.org/themccallister/env)
+<a href="https://travis-ci.org/themccallister/env"><img src="https://travis-ci.org/themccallister/env.svg?branch=master" alt="Build Status"></a>
 </p>
 
 # env
