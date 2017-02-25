@@ -1,6 +1,22 @@
 # env [![Build Status](https://travis-ci.org/themccallister/env.svg?branch=master)](https://travis-ci.org/themccallister/env)
 A Go package to make application environments a little more sane.
 
+## TL;DR
+
+Instead of this:
+
+    value, empty := os.LookupEnv("ENV_VAR")
+    if empty == false {
+        // set the value six other ways...
+    }
+
+You can write this instead:
+
+    value := e.GetOr("ENV_VAR", "default_var")
+    // do something with the value
+
+## Introduction
+
 Golang has a lot of awesome ways to get environment variables from the operating systems. However, one of the languages that I used often (Laravel) has some excellent helpers for grabbing or setting default environment variables. This package is a small helper to reduce the amount of code I write in other applications. Overtime this package will add more options, such as `AppMode`, to set some common practices that I see in the applications I build.
 
 Pull requests are welcome and if you would like to have a discussion please feel free to open an issue!
