@@ -12,8 +12,9 @@ Instead of this:
 
 You can write this instead:
 
+    e := env.Env{}
     value := e.GetOr("ENV_VAR", "default_var")
-    // do something with the value
+    // do something with the value!
 
 ## Introduction
 
