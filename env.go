@@ -1,3 +1,4 @@
+// Package env was created to make application environments a little more sane by allowing passing defaults when asking for environment variables.
 package env
 
 import (
