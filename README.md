@@ -12,7 +12,7 @@ Instead of this:
 
 You can write this instead:
 
-    e := env.Env{}
+    e := env.Set{}
     value := e.GetOr("ENV_VAR", "default_var")
     // do something with the value!
 
@@ -32,7 +32,7 @@ There are a few helper methods on Env that are used often, these are `AppMode` a
 
 `AppMode` is a string that defines the applications mode, such as production, development or staging.
 
-`AppKey` is a random string that can be used for encrypting within the application.
+`AppKey` is a random string that can be used for encryption within the app.
 
 ## Documentation
 
@@ -43,11 +43,11 @@ You can create a new env instance in your app like so:
     import "github.com/themccallister/env"
 
     func main() {
-        e := env.Env{}
+        e := env.Set{}
         // more boilerplate
     }
 
-### Getting the applications "mode"
+### Getting the App "Mode"
 
 By default, `env` sets an `AppMode` which allows you to quickly define the application mode (e.g production, staging or development). You can access the `AppMode` like so:
 
@@ -56,13 +56,13 @@ By default, `env` sets an `AppMode` which allows you to quickly define the appli
     import "github.com/themccallister/env"
 
     func main() {
-        e := env.Env{}
+        e := env.Set{}
         if e.AppMode == "development" {
             // do something only for development
         }
     }
 
-### Setting a default app mode for the application
+### Setting a Default Mode for the App
 
 By default, `AppMode` will look for an OS environment variable `APP_MODE`. If `APP_MODE` is not set, it will return a string "development".
 
@@ -73,11 +73,11 @@ However, if you wish to change the default `AppMode`, when creating the env, you
     import "github.com/themccallister/env"
 
     func main() {
-        e := env.Env{DefaultMode: "production"}
+        e := env.Set{DefaultMode: "production"}
         // the rest of your application
     }
 
-### Getting the applications key
+### Getting the App Key
 
 Similar to `AppMode` By default Env sets an `AppKey` which allows you to quickly access the applications key for encryption purposes:
 
@@ -86,7 +86,7 @@ Similar to `AppMode` By default Env sets an `AppKey` which allows you to quickly
     import "github.com/themccallister/env"
 
     func main() {
-        e := env.Env{}
+        e := env.Set{}
         k := e.AppKey()
         // do something awesome with the key
     }
@@ -98,11 +98,11 @@ You can also set a default, using the following code:
     import "github.com/themccallister/env"
 
     func main() {
-        e := env.Env{DefaultKey: "D035ABB6AC62A811D462D9BD572396E5C52E383699737A9D4B022E3C3B2618CF"}
+        e := env.Set{DefaultKey: "D035ABB6AC62A811D462D9BD572396E5C52E383699737A9D4B022E3C3B2618CF"}
         // the rest of your application
     }
 
-### Getting an environment variable but setting a default (fallback)
+### Getting an Environment Variable Specifying a Default (Fallback)
 
 Env has a helper to get an environment variable or fall back to a default you specify. This helper is really just a wrapper around the `env.LookupEnv` to remove some extra code in your application.
 
@@ -113,7 +113,7 @@ Lets say you need to get the applications URL but want to set a default at the s
     import "github.com/themccallister/env"
 
     func main() {
-        e := env.Env{DefaultMode: "production"}
+        e := env.Set{DefaultMode: "production"}
         url := e.GetOr("APP_URL", "https://mccallister.io")
         // the rest of your application
     }

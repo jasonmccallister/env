@@ -7,7 +7,7 @@ import (
 )
 
 func TestCanGetTheEnvAppModeDefault(t *testing.T) {
-	e := Env{}
+	e := Set{}
 
 	if e.AppMode() != "development" {
 		t.Fatalf("expected the environment to be development, got %v instead", e.AppMode)
@@ -15,7 +15,7 @@ func TestCanGetTheEnvAppModeDefault(t *testing.T) {
 }
 
 func TestCanDefineTheAppModeUsingEnvVars(t *testing.T) {
-	e := Env{}
+	e := Set{}
 	os.Setenv("APP_MODE", "production")
 	if e.AppMode() != "production" {
 		t.Fatalf("expected the environment to be production, got %v instead", e.AppMode)
@@ -26,7 +26,7 @@ func TestCanDefineTheAppModeUsingEnvVars(t *testing.T) {
 }
 
 func TestGetOrWillReturnTheRequestedEnvVarOrTheDefaultThatWasPassed(t *testing.T) {
-	e := Env{}
+	e := Set{}
 	notSet := e.GetOr("APP_FAKE_VAR", "https://mccallister.io")
 	if notSet != "https://mccallister.io" {
 		t.Fatalf("expected the environment var to be development, got %v instead", e.AppMode)
@@ -45,7 +45,7 @@ func TestGetOrWillReturnTheRequestedEnvVarOrTheDefaultThatWasPassed(t *testing.T
 func TestEnvCanSetADefaultModeToOverrideThePackageDefaultAppMode(t *testing.T) {
 	// clear the env to be sure
 	os.Unsetenv("APP_MODE")
-	e := Env{DefaultMode: "staging"}
+	e := Set{DefaultMode: "staging"}
 	m := e.AppMode()
 	if m != "staging" {
 		t.Fatalf("expected the app mode to be staging, got %v instead", m)
@@ -54,7 +54,7 @@ func TestEnvCanSetADefaultModeToOverrideThePackageDefaultAppMode(t *testing.T) {
 
 func TestCanGetTheAppKeyFromEnv(t *testing.T) {
 	os.Setenv("APP_KEY", "1234")
-	e := Env{}
+	e := Set{}
 	k, err := e.AppKey()
 	if err != nil {
 		t.Fatalf("could not get the AppKey from the Env, got %v instead", err)
@@ -66,7 +66,7 @@ func TestCanGetTheAppKeyFromEnv(t *testing.T) {
 
 func TestGettingTheAppKeyWithoutTheEnvVarReturnsAnError(t *testing.T) {
 	os.Unsetenv("APP_KEY")
-	e := Env{}
+	e := Set{}
 	_, err := e.AppKey()
 	if err == nil {
 		t.Fatal("expected an error, but none was returned")
@@ -75,7 +75,7 @@ func TestGettingTheAppKeyWithoutTheEnvVarReturnsAnError(t *testing.T) {
 
 func TestDefaultAppKeyCanBeSetAndReturnedIfTheAppKeyIsNotSetInEnv(t *testing.T) {
 	os.Unsetenv("APP_KEY")
-	e := Env{DefaultKey: "654321"}
+	e := Set{DefaultKey: "654321"}
 	k, err := e.AppKey()
 	if err != nil {
 		t.Fatalf("an unexpected error occured, %v", err)
