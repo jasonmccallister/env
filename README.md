@@ -1,5 +1,5 @@
 # env [![Build Status](https://travis-ci.org/themccallister/env.svg?branch=master)](https://travis-ci.org/themccallister/env) [![GoDoc](https://godoc.org/github.com/themccallister/env?status.svg)](https://godoc.org/github.com/themccallister/env)
-A Go package to make application environments a little more sane.
+A Go package to make application environments a little more sane by allowing defaults to be passed when asking for environment variables.
 
 ## TL;DR
 
