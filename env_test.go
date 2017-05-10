@@ -1,14 +1,13 @@
 package env_test
 
 import (
+	. "github.com/themccallister/env"
 	"os"
 	"testing"
-	. "github.com/themccallister/env"
 )
 
 func TestCanGetTheEnvAppModeDefault(t *testing.T) {
 	e := Set{}
-
 	if e.AppMode() != "development" {
 		t.Fatalf("expected the environment to be development, got %v instead", e.AppMode)
 	}
@@ -31,7 +30,6 @@ func TestGetOrWillReturnTheRequestedEnvVarOrTheDefaultThatWasPassed(t *testing.T
 	if notSet != "https://mccallister.io" {
 		t.Fatalf("expected the environment var to be development, got %v instead", e.AppMode)
 	}
-
 	os.Setenv("APP_FAKE_VAR", "1234")
 	set := e.GetOr("APP_FAKE_VAR", "https://www.google.com")
 	if set != "1234" {
