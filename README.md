@@ -1,4 +1,4 @@
-# env [![Build Status](https://travis-ci.org/themccallister/env.svg?branch=master)](https://travis-ci.org/themccallister/env) [![GoDoc](https://godoc.org/github.com/themccallister/env?status.svg)](https://godoc.org/github.com/themccallister/env)
+# env [![Build Status](https://travis-ci.org/jasonmccallister/env.svg?branch=master)](https://travis-ci.org/jasonmccallister/env) [![GoDoc](https://godoc.org/github.com/jasonmccallister/env?status.svg)](https://godoc.org/github.com/jasonmccallister/env)
 A Go package to make application environments a little more sane by allowing defaults to be passed when asking for environment variables.
 
 ## TL;DR
@@ -24,7 +24,7 @@ Pull requests are welcome and if you would like to have a discussion please feel
 
 ## Installation
 
-Install env using the command `go get themccallister/env`.
+Install env using the command `go get jasonmccallister/env`.
 
 ## Common Helpers
 
@@ -40,7 +40,7 @@ You can create a new env instance in your app like so:
 
     package main
 
-    import "github.com/themccallister/env"
+    import "github.com/jasonmccallister/env"
 
     func main() {
         e := env.Set{}
@@ -53,7 +53,7 @@ By default, `env` sets an `AppMode` which allows you to quickly define the appli
 
     package main
 
-    import "github.com/themccallister/env"
+    import "github.com/jasonmccallister/env"
 
     func main() {
         e := env.Set{}
@@ -70,7 +70,7 @@ However, if you wish to change the default `AppMode`, when creating the env, you
 
     package main
 
-    import "github.com/themccallister/env"
+    import "github.com/jasonmccallister/env"
 
     func main() {
         e := env.Set{DefaultMode: "production"}
@@ -83,7 +83,7 @@ Similar to `AppMode` By default Env sets an `AppKey` which allows you to quickly
 
     package main
 
-    import "github.com/themccallister/env"
+    import "github.com/jasonmccallister/env"
 
     func main() {
         e := env.Set{}
@@ -95,7 +95,7 @@ You can also set a default, using the following code:
 
     package main
 
-    import "github.com/themccallister/env"
+    import "github.com/jasonmccallister/env"
 
     func main() {
         e := env.Set{DefaultKey: "D035ABB6AC62A811D462D9BD572396E5C52E383699737A9D4B022E3C3B2618CF"}
@@ -110,7 +110,7 @@ Lets say you need to get the applications URL but want to set a default at the s
 
     package main
 
-    import "github.com/themccallister/env"
+    import "github.com/jasonmccallister/env"
 
     func main() {
         e := env.Set{DefaultMode: "production"}
