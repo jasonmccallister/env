@@ -1,7 +1,6 @@
-package env_test
+package env
 
 import (
-	. "github.com/themccallister/env"
 	"os"
 	"testing"
 )
