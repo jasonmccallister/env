@@ -8,7 +8,7 @@ import (
 func TestCanGetTheEnvAppModeDefault(t *testing.T) {
 	e := Set{}
 	if e.AppMode() != "development" {
-		t.Fatalf("expected the environment to be development, got %v instead", e.AppMode)
+		t.Errorf("expected the environment to be development, got %v instead", e.AppMode())
 	}
 }
 
@@ -16,10 +16,10 @@ func TestCanDefineTheAppModeUsingEnvVars(t *testing.T) {
 	e := Set{}
 	os.Setenv("APP_MODE", "production")
 	if e.AppMode() != "production" {
-		t.Fatalf("expected the environment to be production, got %v instead", e.AppMode)
+		t.Fatalf("expected the environment to be production, got %v instead", e.AppMode())
 	}
 	if e.AppMode() == "development" {
-		t.Fatalf("expected the environment to be production, got %v instead", e.AppMode)
+		t.Fatalf("expected the environment to be production, got %v instead", e.AppMode())
 	}
 }
 
@@ -27,15 +27,15 @@ func TestGetOrWillReturnTheRequestedEnvVarOrTheDefaultThatWasPassed(t *testing.T
 	e := Set{}
 	notSet := e.GetOr("APP_FAKE_VAR", "https://mccallister.io")
 	if notSet != "https://mccallister.io" {
-		t.Fatalf("expected the environment var to be development, got %v instead", e.AppMode)
+		t.Fatalf("expected the environment var to be development, got %v instead", e.AppMode())
 	}
 	os.Setenv("APP_FAKE_VAR", "1234")
 	set := e.GetOr("APP_FAKE_VAR", "https://www.google.com")
 	if set != "1234" {
-		t.Fatalf("expected the environment var to be 1234, got %v instead", e.AppMode)
+		t.Fatalf("expected the environment var to be 1234, got %v instead", e.AppMode())
 	}
 	if set == "https://www.google.com" {
-		t.Fatalf("expected the environment var to be 1234, got %v instead", e.AppMode)
+		t.Fatalf("expected the environment var to be 1234, got %v instead", e.AppMode())
 	}
 }
 
